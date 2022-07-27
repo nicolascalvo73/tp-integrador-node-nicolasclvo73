@@ -1,20 +1,35 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config();
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const config = require('config');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./src/routes/index');
+const usersRouter = require ('./src/routes/users')
+const mongoConnectionString = config.get('database.host');
 
-var app = express();
+const mongoose = require('mongoose');
+
+mongoose
+    .connect(mongoConnectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    })
+    .then(() => console.log("connected to MONGO-DB"))
+    .catch((err) => {
+    console.error(err);
+    throw err;
+    });
+
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 module.exports = app;
