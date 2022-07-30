@@ -28,6 +28,21 @@ async function getStopById(req, res){
     })
 }
 
+//JSON DE EJEMPLO PARA newStop
+
+/*
+{        "company": "ERSA",
+        "stop": "C2196",
+        "line": "84",
+        "master_line": "Troncal 80",
+        "direction": "SUPER MARIANO MAX ESQ.",
+        "img": "https://www.infobae.com/new-resizer/4EAAweQLmEpbX0vaGXWGbpIgYwo=/992x558/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/BB2OE5LWVJFI5BYCLFWU6YUFZM.jpg",
+        "coordinates": {
+            "lat": -31.4214,
+            "lon": -64.239314
+        }
+    }
+*/
 
 async function newStop(req, res){
         try{
@@ -45,21 +60,6 @@ async function newStop(req, res){
                 }
 }
 
-//JSON DE EJEMPLO PARA newStop
-
-/*
-{        "company": "ERSA",
-        "stop": "C2196",
-        "line": "84",
-        "master_line": "Troncal 80",
-        "direction": "SUPER MARIANO MAX ESQ.",
-        "img": "https://www.infobae.com/new-resizer/4EAAweQLmEpbX0vaGXWGbpIgYwo=/992x558/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/BB2OE5LWVJFI5BYCLFWU6YUFZM.jpg",
-        "coordinates": {
-            "lat": -31.4214,
-            "lon": -64.239314
-        }
-    }
-*/
 
 
 async function newStopLine(req, res){
