@@ -1,8 +1,9 @@
 const config = require('config');
 const axios = require('axios').default;
 const BASE_URL = config.get('BASE_URL.url');
+const BUS_URL = config.get('BUS_URL.url');
 const Stop = require('../models/busStop.model');
-const { saveStop, deleteStop, updateStop} = require('../services/busStop.services');
+const { saveStop, deleteStop} = require('../services/busStop.services');
 
 async function getAllStops(req, res){
     await Stop.find({})
@@ -27,55 +28,6 @@ async function getStopById(req, res){
     })
 }
 
-// async function newStop(req, res){
-//     try{
-//         const data = req.body;
-//         await saveStop(data);
-//         res.json({"msj": "nueva parada agregada", data:res});
-//     } catch (err) {
-//         res.status(400);
-//         console.error(err);
-//         res.json(err);
-//     }
-// };
-
-
-// async function newStop(req, res){
-//     try{
-//         const data = req.body;
-//         const res = new saveStop(data);
-//         res.json({res});
-//     } catch (err) {
-//         res.status(400);
-//         console.error(err);
-//         res.json(err);
-//     }
-// };
-
-
-// async function newStop(req, res){
-//         try{
-//         const data = req.params;
-//         const linea = data.line;
-//         const entry = new Stop();
-//             entry.company = data.company;
-//             entry.stop = data.stop;
-//             entry.line = data.line;
-//             entry.master_line = data.master_line;
-//             entry.coordinates.lat = data.coordinates.lat;
-//             entry.coordinates.lon = data.coordinates.lon;
-//             entry.direction = data.direction;
-//             saveStop(entry);
-//         res.json({
-//             message: `Hemos guardado con exito la nueva parada de la linea ${linea}`
-//         });
-//         } catch (err) {
-//                     res.status(400);
-//                     console.error(err);
-//                     res.json(err);
-//                 }
-// }
-
 
 async function newStop(req, res){
         try{
@@ -93,6 +45,22 @@ async function newStop(req, res){
                 }
 }
 
+//JSON DE EJEMPLO PARA newStop
+
+/*
+{        "company": "ERSA",
+        "stop": "C2196",
+        "line": "84",
+        "master_line": "Troncal 80",
+        "direction": "SUPER MARIANO MAX ESQ.",
+        "img": "https://www.infobae.com/new-resizer/4EAAweQLmEpbX0vaGXWGbpIgYwo=/992x558/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/BB2OE5LWVJFI5BYCLFWU6YUFZM.jpg",
+        "coordinates": {
+            "lat": -31.4214,
+            "lon": -64.239314
+        }
+    }
+*/
+
 
 async function newStopLine(req, res){
     const {linea} = req.params;
@@ -109,6 +77,7 @@ async function newStopLine(req, res){
             entry.coordinates.lat = data.geometry.coordinates[1];
             entry.coordinates.lon = data.geometry.coordinates[0];
             entry.direction = data.properties.recorrido.descripcion_larga;
+            entry.img = BUS_URL;
             saveStop(entry);
             busStops.push(entry);
         })

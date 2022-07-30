@@ -9,7 +9,8 @@ const stopSchema = new Schema ({
         lat: {type: Number},
         lon: {type: Number}
     },
-    direction:{type: String}
+    direction:{type: String},
+    img: {type: String}
 });
 
 const Stop = new model('Stop', stopSchema);
