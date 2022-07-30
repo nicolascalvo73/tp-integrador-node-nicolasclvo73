@@ -5,7 +5,7 @@ const logger = require('morgan');
 const config = require('config');
 
 const indexRouter = require('./src/routes/index');
-const usersRouter = require ('./src/routes/users')
+const busStopsRouter = require ('./src/routes/busStops.router')
 const mongoConnectionString = config.get('database.host');
 
 const mongoose = require('mongoose');
@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/busstops', busStopsRouter);
 
 
 module.exports = app;
