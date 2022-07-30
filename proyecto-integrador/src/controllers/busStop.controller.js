@@ -61,7 +61,7 @@ async function newStop(req, res){
 }
 
 //PASANDO EL NRO DE LINEA POR PARAMS TRAE LAS PARADAS DE LA PAGINA 1 DE LA API 
-//DE LA MUNICIPALIDAD Y GUARDA ÉSTAS EN LA MONGO DB
+//DE LA MUNICIPALIDAD Y GUARDA ÉSTAS EN LA MONGO
 
 async function newStopLine(req, res){
     const {linea} = req.params;
